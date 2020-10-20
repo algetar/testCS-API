@@ -1,4 +1,6 @@
 <?php
+use app\components\response\ApiResponse;
+use app\components\response\JsonApiResponseFormatter;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -8,7 +10,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'ru',
-    'defaultRoute' => 'site/index',
+    //'defaultRoute' => 'site/index',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -24,7 +26,13 @@ $config = [
             'cookieValidationKey' => 'e6ddc3b8167f7d912e74ab5aef204b706ac4c738',
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
+                'application/vnd.api+json' => 'yii\web\JsonParser',
             ]
+        ],
+        'response' => [
+            'formatters' => [
+                'vnd.api+json' => 'app\components\response\JsonApiResponseFormatter',
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -58,7 +66,10 @@ $config = [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'news'],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'news'
+                ],
             ],
         ],
     ],
