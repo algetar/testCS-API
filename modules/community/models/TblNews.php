@@ -7,7 +7,7 @@ use yii\db\ActiveRecord;
 /**
  * This is the model class for table "News".
  *
- * @property int $Id
+ * @property int $ID
  * @property string|null $Title Заголовок
  * @property string $Body Сообщение
  * @property string|null $RegTime Время опубликования
@@ -41,7 +41,7 @@ class TblNews extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Id' => 'Ид записи',
+            'ID' => 'Ид записи',
             'Title' => 'Заголовок',
             'Body' => 'Сообщение',
             'RegTime' => 'Время создания',
